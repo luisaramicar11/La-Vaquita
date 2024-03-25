@@ -3,10 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
-export function Menu(){
-    return(
-        <>
-       <Navbar bg="light" variant="light">
+function ColorSchemesExample() {
+  return (
+    <>
+      <Navbar bg="light" variant="light">
       <Container>
         <div className="d-lg-flex align-items-center">
           {window.innerWidth < 992 ? <div className="d-none d-sm-flex flex-column mt-3 mt-sm-0">
@@ -29,6 +29,8 @@ export function Menu(){
         </div>
       </Container>
     </Navbar>
-        </>
-    )
+    </>
+  );
 }
+
+export default ColorSchemesExample;

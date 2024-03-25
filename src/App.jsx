@@ -1,10 +1,13 @@
-import './App.css'
+import './App.css';
+import {Menu} from "./components/Menu"
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-
-
   return (
     <>
+  <BrowserRouter>
+    <Menu/>
+  </BrowserRouter>
     
     </>
   )
