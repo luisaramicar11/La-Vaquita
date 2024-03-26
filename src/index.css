@@ -1,0 +1,25 @@
+:root{
+    --firts-color:#36190D;
+    --second-color:#FFA72F;
+    --third-color:#fff;
+    --gray-color:#F2F3F4 ;
+    --error-color:#FF2530;
+    --success-color:#66B04C;
+}
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  
+  *,
+  *:after,
+  *::before {
+    box-sizing: inherit;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family:  "Fredoka", sans-serif;
+  }

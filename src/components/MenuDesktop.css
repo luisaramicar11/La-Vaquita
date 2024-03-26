@@ -1,0 +1,79 @@
+.container-Logo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;  
+    background-color: var(--firts-color);
+    width: 100vw; 
+}
+
+
+
+.big-logo{
+    display: flex;
+    gap:1rem;
+}
+
+.big-logo h1{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 700;
+    color:var(--third-color);
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.big-logo img{
+    width: 4rem;
+    height: auto;
+}
+
+.big-logo-person{
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    font-size: 1.2rem;
+    padding: 0.2rem;
+}
+
+.big-logo-person img{
+    width:1.7rem;
+    height: auto;
+}
+
+.active-link{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    color:var(--third-color);
+    font-size: 1rem;
+    padding: 1rem;
+    padding-bottom: 0.2rem;
+    margin-bottom: 1rem;
+    border-bottom: thin solid var(--third-color);
+    text-decoration: none;
+}
+
+.big-menu-links{
+    display: flex;
+    justify-content: center;
+    gap:1.5rem;
+    align-items: center;
+    background-color: var(--firts-color);
+}
+
+.big-links{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color:var(--third-color);
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+
+.big-menu{
+    display: flex;
+    background-color: var(--firts-color);
+    align-items: center;
+    justify-content: space-between;
+    gap:15rem;
+    padding-right: 2rem;
+}
