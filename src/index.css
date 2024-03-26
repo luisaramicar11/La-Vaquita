@@ -1,8 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root{
     --firts-color:#36190D;
     --second-color:#FFA72F;
     --third-color:#fff;
     --gray-color:#F2F3F4 ;
+    --gray-dark-color:#373A3D;
     --error-color:#FF2530;
     --success-color:#66B04C;
 }
@@ -22,4 +27,24 @@ html {
     margin: 0;
     padding: 0;
     font-family:  "Fredoka", sans-serif;
+  }
+
+  .custom-text-red{
+    color:var(--error-color);
+  }
+
+  .custom-text-white{
+    color:var(--third-color)
+  }
+
+  .custom-text-gray{
+    color:var(--gray-color)
+  }
+
+  .custom-text-dark-gray{
+    color:var(--gray-dark-color)
+  }
+
+  .custom-backgound-firts{
+    background-color:var(--firts-color)
   }
