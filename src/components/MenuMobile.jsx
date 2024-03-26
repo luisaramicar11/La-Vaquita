@@ -23,9 +23,5 @@ export function MenuMobile(){
             </nav>
             </div>
         </div>
-        
-        
-          
-
     )
 }

@@ -1,12 +1,23 @@
-.container-Logo{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;  
-    background-color: var(--firts-color);
-    width: 100vw; 
+.active-link{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    color:var(--third-color);
+    font-size: 1rem;
+    padding: 1rem;
+    padding-bottom: 0.2rem;
+    margin-bottom: 1rem;
+    border-bottom: thin solid var(--third-color);
+    text-decoration: none;
 }
 
+.big-links{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color:var(--third-color);
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-decoration: none;
+}
 
 
 .big-logo{
@@ -39,16 +50,13 @@
     height: auto;
 }
 
-.active-link{
-    font-family: "Fredoka", sans-serif;
-    font-weight: 500;
-    color:var(--third-color);
-    font-size: 1rem;
-    padding: 1rem;
-    padding-bottom: 0.2rem;
-    margin-bottom: 1rem;
-    border-bottom: thin solid var(--third-color);
-    text-decoration: none;
+.big-menu{
+    display: flex;
+    background-color: var(--firts-color);
+    align-items: center;
+    justify-content: space-between;
+    gap:15rem;
+    padding-right: 2rem;
 }
 
 .big-menu-links{
@@ -59,21 +67,11 @@
     background-color: var(--firts-color);
 }
 
-.big-links{
-    font-family: "Fredoka", sans-serif;
-    font-weight: 600;
-    color:var(--third-color);
-    font-size: 1.2rem;
-    padding: 1rem;
-    text-decoration: none;
-}
-
-
-.big-menu{
+.container-Logo{
     display: flex;
-    background-color: var(--firts-color);
-    align-items: center;
     justify-content: space-between;
-    gap:15rem;
-    padding-right: 2rem;
+    align-items: center;
+    padding: 1.5rem;  
+    background-color: var(--firts-color);
+    width: 100vw; 
 }

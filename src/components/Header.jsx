@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import {MenuMobile} from "./MenuMobile"
 import {MenuDesktop} from "./MenuDesktop"
-import { useState, useEffect } from 'react';
 
 export function Header(){
     const [isMobile, setIsMobile] = useState(false);
