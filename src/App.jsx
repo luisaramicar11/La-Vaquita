@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Header} from "./components/Header.jsx"
-import {GroupCard} from "./components/Group-Card.jsx";
 import {Footer} from "./components/Footer.jsx"
+import {Groups} from "./pages/Groups.jsx"
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/amigos" element="" />
           <Route path="/gastos" element="" />
-          <Route path="/grupos" element="" />
+          <Route path="/grupos" element={<Groups/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>
