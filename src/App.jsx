@@ -8,8 +8,8 @@ import {ModalNewGroup} from "./components/ModalNewGroup.jsx"
 function App() {
   return (
     <>
-         <ModalNewGroup></ModalNewGroup>
-      {/* <BrowserRouter>
+         
+      <BrowserRouter>
         <Header/>
         <Routes>
           <Route path="/amigos" element="" />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/grupos" element={<Groups/>} />
         </Routes>
         <Footer/>
-      </BrowserRouter> */}
+      </BrowserRouter> 
   
     </>
   )

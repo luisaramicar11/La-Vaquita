@@ -1,6 +1,39 @@
-import {useState} from "react"
-export function ModalNewGroup(){
+import {useState} from "react";
+export function ModalNewGroup({groups, setGroups}){
+  
+  const [group, setGroup]=useState("");
+  const [color, setColor]=useState("#A65293");
   const [showModal, setShowModal] = useState(false);
+
+  const handleGroup=(e)=>{
+    setGroup(e.target.value)
+    console.log(group)
+  }
+
+  const handleColor=(color)=>{
+    setColor(color);
+    console.log(color)
+  }
+
+  const handleSubmit=async (e)=>{
+    e.preventDefault();
+
+    try{
+        const response = await fetch("http://localhost:3000/groups",{
+        method:"POST",
+        headers:{
+          'Content-type':'application/json'
+        },
+        body:JSON.stringify({name:group, color:color})
+      });
+      const newGroup=await response.json();
+      setGroups([...groups, newGroup]);
+      
+      console.log(newGroup);
+    }catch(err){
+      console.log("error", err)
+    }
+  }
   return (
     <>
       <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" className="block custom-backgound-firts custom-text-white font-medium rounded-md h-8 w-32" 
@@ -31,31 +64,22 @@ export function ModalNewGroup(){
             </div>
            
             <div className="p-4 md:p-5">
-                <form className="space-y-4" action="#">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <input type="text" name="grupo" id="grupo" placeholder="Nombre del grupo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                        <input type="text" name="grupo" id="grupo" placeholder="Nombre del grupo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" onChange={handleGroup} required />
                     </div>
-                    <div className="grid grid-cols-4 grid-rows-2 ">
-                        
-                        
-  <label htmlFor="color-input-purple" className="bg-#A65293"></label>
-  <label htmlFor="color-input-green" className="bg-#66B04C"></label>
-  <label htmlFor="color-input-brown" className="bg-#995036"></label>
-  <label htmlFor="color-input-blue" className="bg-#4F80A4"></label>
-  <label htmlFor="color-input-white" className="bg-#FFFFFF"></label>
-  <label htmlFor="color-input-orange" className="bg-#FFA72E"></label>
-  <label htmlFor="color-input-pink" className="col-span-1 row-span-1 bg-#FEE3E2"></label>
-  <label htmlFor="color-input-red" className="col-span-full row-span-1 bg-#FF2630"></label>
+                    <div className="grid grid-cols-4 gap-4 mt-4 ">
 
+                        
+  <button type="button" style={{backgroundColor:"#A65293"}} onClick={()=>handleColor("#A65293")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#66B04C"}} onClick={()=>handleColor("#66B04C")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#995036"}} onClick={()=>handleColor("#995036")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#4F80A4"}} onClick={()=>handleColor("#4F80A4")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#FFFFFF"}} onClick={()=>handleColor("#FFFFFF")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#FFA72E"}} onClick={()=>handleColor("#FFA72E")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#FEE3E2"}} onClick={()=>handleColor("#FEE3E2")} className="w-full h-12 rounded-md"></button>
+  <button type="button" style={{backgroundColor:"#FF2630"}} onClick={()=>handleColor("#FF2630")} className="w-full h-12 rounded-md"></button>
 
-<input type="color" id="color-input-purple" value="#A65293"/>
-<input type="color" id="color-input-green" value="#66B04C"/>
-<input type="color" id="color-input-brown" value="#995036"/>
-<input type="color" id="color-input-blue" value="#4F80A4"/>
-<input type="color" id="color-input-white" value="#FFFFFF"/>
-<input type="color" id="color-input-orange" value="#FFA72E"/>
-<input type="color" id="color-input-pink" value="#FEE3E2"/>
-<input type="color" id="color-input-red" value="#FF2630"/>
                         </div>
                        
                     <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center">Crear</button>
@@ -63,8 +87,11 @@ export function ModalNewGroup(){
                          
                     </div>
                 </form>
+                
             </div>
+            
         </div>
+        
     </div>
     
 </div> 
