@@ -8,8 +8,9 @@
     --third-color:#fff;
     --gray-color:#F2F3F4 ;
     --gray-dark-color:#373A3D;
-    --error-color:#FF2530;
+    --error-color:#FF2E37;
     --success-color:#66B04C;
+  
 }
 html {
     box-sizing: border-box;
@@ -33,6 +34,10 @@ html {
     color:var(--error-color);
   }
 
+  .custom-text-yellow{
+    color:var(--second-color);
+  }
+
   .custom-text-white{
     color:var(--third-color)
   }
@@ -47,4 +52,8 @@ html {
 
   .custom-backgound-firts{
     background-color:var(--firts-color)
+  }
+
+  .custom-error-color{
+    color: var(--error-color);
   }

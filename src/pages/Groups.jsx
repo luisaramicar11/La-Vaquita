@@ -18,11 +18,14 @@ export function Groups(){
           }
         )
       }, [])
+
+      let totalRegistros=groups.length+1;
+      console.log(totalRegistros);
     return(
         <section className="p-6">
         <div className="flex justify-end">
             {
-              <ModalNewGroup groups={groups} setGroups={setGroups} />
+              <ModalNewGroup groups={groups} setGroups={setGroups} totalRegistros={totalRegistros} />
             }
         </div>
         <div className="pb-8">
@@ -31,7 +34,7 @@ export function Groups(){
         </div>
         <div className="grid grid-cols-1 gap-3">
         {
-          <GroupCard data={groups}/>
+          <GroupCard data={groups} />
         }
         </div>
         </section>
