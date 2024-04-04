@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom"
+
 export function ModalNewGroup({groups, setGroups, totalRegistros}){
   
   const [group, setGroup]=useState("");
@@ -6,6 +8,12 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
   const [validationError, setValidationError]=useState("");
   const [showModal, setShowModal] = useState(false);
 
+  const navigate = useNavigate();
+  const handleClick = () => {
+    // Navegar a una ruta específica cuando se hace clic en algún elemento
+    navigate(`/grupos/${totalRegistros}`);
+  };
+  
   const handleGroup=(e)=>{
     setGroup(e.target.value)
     console.log(group)
@@ -31,8 +39,6 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
   const handleSubmit=async (e)=>{
     e.preventDefault();
     validationsForm();
-    
-
     try{
         const response = await fetch("http://localhost:3000/groups",{
         method:"POST",
@@ -41,10 +47,12 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
         },
         body: JSON.stringify({id:totalRegistros, name:group, color:color})
       });
+      
+
       const newGroup=await response.json();
       setGroups([...groups, newGroup]);
-      
       console.log(newGroup);
+      console.log(groups); 
     }catch(err){
       console.log("error", err)
     }
@@ -97,7 +105,7 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
 
                         </div>
                        
-                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center">Crear</button>
+                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={handleClick}>Crear</button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                          
                     </div>
