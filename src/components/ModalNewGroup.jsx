@@ -9,11 +9,7 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
-  const handleClick = () => {
-    // Navegar a una ruta específica cuando se hace clic en algún elemento
-    navigate(`/grupos/${totalRegistros}`);
-  };
-  
+
   const handleGroup=(e)=>{
     setGroup(e.target.value)
     console.log(group)
@@ -39,6 +35,7 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
   const handleSubmit=async (e)=>{
     e.preventDefault();
     validationsForm();
+    console.log("este es el front", JSON.stringify({id:totalRegistros, name:group, color:color}))
     try{
         const response = await fetch("http://localhost:3000/groups",{
         method:"POST",
@@ -48,9 +45,10 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
         body: JSON.stringify({id:totalRegistros, name:group, color:color})
       });
       
-
+        
       const newGroup=await response.json();
       setGroups([...groups, newGroup]);
+      navigate(`/grupos/${totalRegistros}`);
       console.log(newGroup);
       console.log(groups); 
     }catch(err){
@@ -105,7 +103,7 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
 
                         </div>
                        
-                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={handleClick}>Crear</button>
+                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center">Crear</button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                          
                     </div>
