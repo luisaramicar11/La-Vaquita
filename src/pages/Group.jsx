@@ -18,7 +18,9 @@ export function Group(){
           console.log("request error", err);
         }
       )
-    }, [])
+    }, [id])
+
+    
 
 
 return(   

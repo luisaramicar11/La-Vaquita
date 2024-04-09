@@ -9,8 +9,8 @@ export function Groups(){
         groups.then(
           (res)=>res.json()
           .then(data=>{
-            console.log("response", res);
-            console.log("data", data);
+            //console.log("response", res);
+            //console.log("data", data);
             setGroups(data)
           }),
           (err)=>{
@@ -20,7 +20,7 @@ export function Groups(){
       }, [])
 
       let totalRegistros=groups.length+1;
-      console.log(totalRegistros);
+      //console.log(totalRegistros);
     return(
         <section className="p-6">
         <div className="flex justify-end">

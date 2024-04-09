@@ -1,8 +1,35 @@
+//import { useParams } from "react-router-dom";
 import layer from "../assets/img/layer-MC1.svg"
 import {Link} from "react-router-dom"
 
 export function GroupCard({data}){
-  
+
+    const messageDeleteGroup=(group)=>{
+      let message=`¿Estas seguro que deseas eliminar el grupo "${group.name}"?`
+      if(confirm(message)==true){
+        handleDelete(group)
+      }
+    }
+    
+    const handleDelete=(group)=>{
+      if(!group.id) return;
+        fetch(`http://localhost:3000/groups/${group.id}`,{
+        method:"DELETE",
+        headers:{
+          'Content-type':'application/json'
+        }
+      }).then((response)=>{
+        if (!response.ok) {
+        throw new Error('La solicitud no fue exitosa');
+      }
+      response.json()
+      window.location.reload();
+    })
+      .catch((err)=>{
+        console.log('Error al eliminar el grupo:', err)
+      });
+    };
+
     return(
         <>
           {data.map((group)=>(
@@ -13,7 +40,7 @@ export function GroupCard({data}){
               {/*  <p className="mb-1 font-bold">Debes: <span className="custom-text-red font-bold">{group.state.owe}</span></p> */}
                <div className="flex">
                 <button type="button" className="custom-text-white custom-backgound-firts shadow font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 "><Link to={`/grupos/${group.id}`}>Editar</Link></button>
-                <button type="button" className="custom-text-white custom-backgound-firts shadow font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 ">Eliminar</button>
+                <button type="button" className="custom-text-white custom-backgound-firts shadow font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2 " onClick={()=>messageDeleteGroup(group)}>Eliminar</button>
                </div>
             </div>
           </div>
