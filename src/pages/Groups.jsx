@@ -19,13 +19,13 @@ export function Groups(){
         )
       }, [])
 
-      let totalRegistros=groups.length+1;
+ 
       //console.log(totalRegistros);
     return(
         <section className="p-6">
         <div className="flex justify-end">
             {
-              <ModalNewGroup groups={groups} setGroups={setGroups} totalRegistros={totalRegistros} />
+              <ModalNewGroup groups={groups} setGroups={setGroups} />
             }
         </div>
         <div className="pb-8">

@@ -1,9 +1,10 @@
 import logo from "../assets/img/Logo.svg"
 import iconPerson from "../assets/img/icon-person.png"
-import {Link} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import "./MenuMobile.css"
 
 export function MenuMobile(){
+
     return(
         <div className="container-small">
             <div className="container-Logo">
@@ -17,9 +18,9 @@ export function MenuMobile(){
             </div>
             <div>
             <nav className="small-menu-links">
-                <Link className="small-link" to="/amigos">Amigos</Link>
-                <Link className="small-link" to="/gastos">Gastos</Link>
-                <Link className="small-link" to="/grupos">Grupos</Link>
+                <NavLink className={({isActive})=>(isActive)?"small-link active-link-small":"small-link"} to="/amigos">Amig@s</NavLink>
+                <NavLink className={({isActive})=>(isActive)?"small-link active-link-small":"small-link"} to="/gastos">Gastos</NavLink>
+                <NavLink className={({isActive})=>(isActive)?"small-link active-link-small":"small-link"} to="/grupos">Grupos</NavLink>
             </nav>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom"
 
-export function ModalNewGroup({groups, setGroups, totalRegistros}){
+export function ModalNewGroup({groups, setGroups}){
   
   const [group, setGroup]=useState("");
   const [color, setColor]=useState("#A65293");
@@ -12,7 +12,7 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
 
   const handleGroup=(e)=>{
     setGroup(e.target.value)
-    console.log(group)
+    //console.log(group)
   }
 
   const handleCloseModal=()=>{
@@ -22,35 +22,38 @@ export function ModalNewGroup({groups, setGroups, totalRegistros}){
 
    const handleColor=(color)=>{
     setColor(color);
-    console.log(color)
+    //console.log(color)
   }
 
   const validationsForm=()=>{
     console.log("funciones validacion")
     if(!group.trim()){
       setValidationError("Elige un nombre para continuar")
+    }else if(group.length>30){
+      setValidationError("La extensión del nombre debe ser menor o igual a 30 caracteres")
     }
   }
 
   const handleSubmit=async (e)=>{
     e.preventDefault();
-    validationsForm();
-    console.log("este es el front", JSON.stringify({id:totalRegistros, name:group, color:color}))
+    if(!validationsForm()) return;
+    console.log("este es el front", JSON.stringify({name:group, color:color}))
     try{
         const response = await fetch("http://localhost:3000/groups",{
         method:"POST",
         headers:{
           'Content-type':'application/json'
         },
-        body: JSON.stringify({id:totalRegistros, name:group, color:color})
+        body: JSON.stringify({name:group, color:color})
       });
       
         
       const newGroup=await response.json();
       setGroups([...groups, newGroup]);
-      navigate(`/grupos/${totalRegistros}`);
+      window.location.reload();
       console.log(newGroup);
       console.log(groups); 
+      navigate("/")
     }catch(err){
       console.log("error", err)
     }

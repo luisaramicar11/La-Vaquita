@@ -20,9 +20,6 @@ export function Group(){
       )
     }, [id])
 
-    
-
-
 return(   
         <>
         <nav className="flex justify-around items-center mt-8">
@@ -43,9 +40,7 @@ return(
         </div>
 
         <h2 className="custom-text-yellow text-lg p-4 font-bold border-b-2 border-custom-text-gray">GASTOS</h2>
-
-
-        
+ 
         </>
     )
 }

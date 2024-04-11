@@ -17,9 +17,26 @@ background-color: var(--firts-color);
     font-weight: 500;
     color:var(--third-color);
     font-size: 1rem;
-    padding: 1rem;
     text-decoration: none;
+    list-style: none;
+    position: relative;
+    padding-bottom: 10px;
 } 
+
+.small-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0; 
+    border: 10px solid transparent;
+    border-bottom: 10px solid white; 
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+  }
+  
+  .small-link.active-link-small::after {
+    opacity: 1;
+  }
 
 .small-logo{
     display: flex;
@@ -55,5 +72,6 @@ background-color: var(--firts-color);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
 }
 
