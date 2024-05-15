@@ -30,7 +30,7 @@ export function Groups(){
         </div>
         <div className="pb-8">
             <h2 className="font-bold">Debes</h2>
-            <p className="custom-text-red font-bold text-2xl">${/* {groups.reduce(function(total, current){return total + current.state.owe;},0)} */}</p>
+            <p className="custom-text-red font-bold text-2xl">$ 40000{/* {groups.reduce(function(total, current){return total + current.state.owe;},0)} */}</p>
         </div>
         <div className="grid grid-cols-1 gap-3">
         {

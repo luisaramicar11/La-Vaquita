@@ -4,6 +4,7 @@
 
 :root{
     --firts-color:#36190D;
+    --first-color:#36190D;
     --second-color:#FFA72F;
     --third-color:#fff;
     --gray-color:#F2F3F4 ;
@@ -52,6 +53,14 @@ html {
 
   .custom-backgound-firts{
     background-color:var(--firts-color)
+  }
+
+  .custom-background-first{
+    background-color:var(--first-color)
+  }
+
+  .custom-text-first-color{
+    color: var(--firts-color);
   }
 
   .custom-error-color{
