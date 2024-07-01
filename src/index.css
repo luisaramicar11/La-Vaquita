@@ -63,6 +63,10 @@ html {
     color: var(--firts-color);
   }
 
+  .custom-border-modal{
+    border: 5px solid var(--first-color);
+  }
+
   .custom-error-color{
     color: var(--error-color);
   }

@@ -1,31 +1,38 @@
-import { useState, useEffect } from "react"
+
+import { useState, useEffect  } from "react"
 import { GroupCard } from "../components/GroupCard"
 import { ModalNewGroup } from "../components/ModalNewGroup"
 export function Groups(){
+    let title;
+    const id = localStorage.getItem("id");
     const [groups, setGroups] = useState([])
-
+    console.log(groups)
     useEffect(()=>{
-        const groups=fetch("http://localhost:3000/groups")
-        groups.then(
-          (res)=>res.json()
+        fetch(`http://localhost:3000/groups`,{
+          method:"GET",
+          headers:{
+            "Content-Type": "application/json",
+            'Authorization':`Bearer ${localStorage.getItem("token")}`,
+          }
+        }).then( (res)=>res.json()
           .then(data=>{
             //console.log("response", res);
-            //console.log("data", data);
+            console.log("data", data);
             setGroups(data)
           }),
           (err)=>{
             console.log("request error", err);
           }
         )
-      }, [])
+      }, [id])
 
- 
+      console.log(groups)
       //console.log(totalRegistros);
     return(
         <section className="p-6">
-        <div className="flex justify-end">
+        <div className="flex justify-end"> 
             {
-              <ModalNewGroup groups={groups} setGroups={setGroups} />
+              <ModalNewGroup groups={groups} setGroups={setGroups} title={title}></ModalNewGroup>
             }
         </div>
         <div className="pb-8">

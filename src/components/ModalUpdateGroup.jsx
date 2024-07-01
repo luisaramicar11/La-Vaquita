@@ -1,20 +1,23 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import "./ModalNewGroup.css";
 
 
-export function ModalNewGroup({groups, setGroups, title}){
+export function ModalUpdateGroup({groupData, setGroupData, title}){
   title = title || "Nuevo grupo";
-  const [group, setGroup]=useState("");
-  const [color, setColor]=useState("#A65293");
+  const navigate = useNavigate();
+  console.log(groupData.name)
+  const [group, setGroup]=useState(groupData.name);
+  const [color, setColor]=useState(groupData.color);
   const [validationError, setValidationError]=useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const navigate = useNavigate();
 
+  const { id } = useParams();
+  console.log(id)
   const handleGroup=(e)=>{
     setGroup(e.target.value)
-    //console.log(group)
+    console.log(group)
   }
 
   const handleCloseModal=()=>{
@@ -24,51 +27,54 @@ export function ModalNewGroup({groups, setGroups, title}){
 
    const handleColor=(color)=>{
     setColor(color);
-    //console.log(color)
+    console.log(color)
   }
 
   const validationsForm=()=>{
     console.log("funciones validacion")
-    const alreadyThere=groups.find(eachGroup=>eachGroup.name===group);
+   
     if(!group.trim()){
       setValidationError("Elige un nombre para continuar");
       return false;
     }else if(group.length>30){
       setValidationError("La extensión del nombre debe ser menor o igual a 30 carácteres");
       return false;
-    }else if(alreadyThere){
-      setValidationError("El nombre del grupo ya existe")
-      return false;
     }
     return true;
   }
 
-  const handleSubmit=async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!validationsForm()) return;
-    console.log("este es el front", JSON.stringify({name:group, color:color}))
-    try{
-        const response = await fetch(`http://localhost:3000/groups`,{
-        method:"POST",
-        headers:{
-          'Content-type':'application/json',
-          'Authorization':`Bearer ${localStorage.getItem("token")}`
+    if (!validationsForm()) return;
+  
+    try {
+      const response = await fetch(`http://localhost:3000/groups/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({name:group, color:color, owneruserid: localStorage.getItem("id")})
+        body: JSON.stringify({ name: group, color: color, owneruserid: localStorage.getItem("id") }),
       });
-      
-        
-      const newGroup=await response.json();
-      setGroups([...groups, newGroup]);
-      //window.location.reload();
-
-      console.log(newGroup);
-      console.log(groups); 
-      navigate("/grupos")
-    }catch(err){
-      console.log("error", err)
+  
+      if (response.ok) {
+        const updatedGroup = await response.json();
+        setGroupData(updatedGroup);
+        setShowModal(false); // Cerrar el modal
+        navigate("/grupos")
+      } else {
+        const errorText = await response.text();
+        console.log("Error:", errorText);
+        setValidationError("Error al actualizar el grupo.");
+      }
+    } catch (err) {
+      console.log("Error:", err);
+      setValidationError("Error de conexión.");
+      setShowModal(false); // Cerrar el modal
+      navigate(`/grupos`)
     }
-  }
+  };
+  
   return (
     <>
       <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" className="block custom-backgound-firts custom-text-white font-medium rounded-md h-8 w-32" 
@@ -94,7 +100,7 @@ export function ModalNewGroup({groups, setGroups, title}){
                 </div>
             <div className="flex items-center justify-center p-1 md:p-5 rounded-t dark:border-gray-600">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-center">
-                    Nuevo grupo
+                    Editar grupo
                 </h3>
             </div>
            
@@ -102,7 +108,7 @@ export function ModalNewGroup({groups, setGroups, title}){
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="input-container">
                         <i className="fa fa-users" aria-hidden="true"></i>
-                        <input type="text" name="grupo" id="grupo" placeholder="Nombre del grupo " className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" onChange={handleGroup}  />
+                        <input type="text" name="grupo" id="grupo"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" onChange={handleGroup} value={group}/>
                     </div>
                     <div className="grid grid-cols-4 gap-4 mt-4 ">
 
@@ -118,7 +124,7 @@ export function ModalNewGroup({groups, setGroups, title}){
 
                         </div>
                        
-                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center">Crear</button>
+                    <button type="submit" className="w-full  custom-backgound-firts custom-text-white focus:ring-4 focus:outline-nonefont-medium rounded-lg text-sm px-5 py-2.5 text-center">Editar grupo</button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                          
                     </div>
