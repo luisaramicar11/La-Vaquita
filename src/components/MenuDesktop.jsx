@@ -21,11 +21,11 @@ const handleLogOut = async () => {
       <NavLink className={({isActive})=>(isActive)?"active-link":"big-links"} to="/amigos">Amig@s</NavLink>
       <NavLink className={({isActive})=>(isActive)?"active-link":"big-links"} to="/gastos">Gastos</NavLink>
       <NavLink className={({isActive})=>(isActive)?"active-link":"big-links"} to="/grupos">Grupos</NavLink>
-    <button onClick={handleLogOut}>salir</button>
+
     </nav>
-    <div className="big-logo-person">
-      <img src={iconPerson} alt="icon-person" />
-    </div>
+    <button onClick={handleLogOut} className="big-logo-person">
+          <img src={iconPerson} alt="icon-person" />
+        </button>
     </div>
         </div>
         

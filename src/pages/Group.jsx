@@ -42,9 +42,7 @@ export function Group() {
         });
         if (response.ok) {
           const data = await response.json();
-          setGroupData(data);
-          
-          
+          setGroupData(data); 
         }
       } catch (error) {
         console.log("Request error", error);
@@ -53,6 +51,8 @@ export function Group() {
   
     fetchData();
   }, [id]);
+
+  console.log(groupData)
   
 
   const handleModalToggle = () => {
@@ -285,43 +285,50 @@ export function Group() {
       </nav>
 
       <div className="mt-16 flex flex-row items-center bg-white border border-gray-200 rounded-lg shadow md:flex-col md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-        <div style={{ backgroundColor: groupData.color }} className="w-1/4">
-          <img className="object-cover w-full rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={layer} alt="vaquita" />
-        </div>
-        <div className="flex flex-col justify-between p-4 leading-normal">
-          <h5 className="mb-1 text-2xl font-bold tracking-tight custom-text-dark-gray">{groupData.name}</h5>
-          <p className="mb-1 font-bold">Debes en total:<span className="custom-text-red font-bold px-1">{groupData.total_value}</span></p>
-          <p className="mb-1 font-bold">Participantes:<span className="custom-text-red font-bold px-1">{groupData.friends}</span></p>
-          <div className="flex">
-            <button type="button" className="custom-text-white custom-backgound-firts shadow font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2" onClick={handleModalToggle}>
-              Eliminar grupo
-            </button>
-          </div>
-        </div>
-      </div>
-      <h3>GASTOS</h3>
-      {expenses.map((expense) => (
-    <div key={expense.id} className="mt-4 bg-white border border-gray-200 rounded-lg shadow p-4">
-      <h4 className="text-lg font-semibold mb-2">{expense.description}</h4>
-      <p className="text-gray-600 mb-2">Pagado por: {expense.paid_by}</p>
-      <p className="text-gray-600 mb-2">Valor: ${expense.amount_paid}</p>
-      <p className="text-gray-600 mb-2">Participantes: {expense.members}</p>
-      <div className="flex justify-end">
-        <button
-          className="custom-text-white custom-background-first shadow font-medium rounded-lg text-sm px-4 py-1 text-center mr-2"
-           
-        >
-          Ver
-        </button>
-        <button
-          className="custom-text-white custom-background-first shadow font-medium rounded-lg text-sm px-4 py-1 text-center"
-          
-        >
-          Eliminar
-        </button>
-      </div>
+  <div
+    className="w-48 md:w-full h-40 md:h-48 bg-cover bg-center rounded-t-lg md:rounded-l-lg"
+    style={{
+      backgroundColor: groupData.color,
+      backgroundImage: `url(${layer})`,
+    }}
+  ></div>
+  <div className="flex flex-col p-4 flex-1 leading-normal">
+    <h5 className="mb-1 text-2xl font-bold tracking-tight custom-text-dark-gray">{groupData.name}</h5>
+    <p className="mb-1 font-bold">Debes en total: <span className="custom-text-red font-bold px-1">{groupData.total_value}</span></p>
+    <p className="mb-1 font-bold">Participantes: <span className="custom-text-red font-bold px-1">{groupData.friends}</span></p>
+    <div className="flex">
+      <button type="button" className="custom-text-white custom-backgound-firts shadow font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2" onClick={handleModalToggle}>
+        Eliminar grupo
+      </button>
     </div>
+  </div>
+</div>
+
+      <h3 className="custom-text-yellow">GASTOS</h3>
+      <div className="flex flex-wrap justify-center gap-5 md:flex-row lg:flex-row xl:flex-row ">
+      {expenses.map((expense) => (
+        <div key={expense.id} className="flex flex-wrap justify-center gap-5 md:flex-row lg:flex-row xl:flex-row ">
+          <div key={expense.id} className="mt-4 bg-white border border-gray-200 rounded-lg shadow p-4">
+        <h4 className="text-lg font-semibold mb-2">{expense.description}-Participaron {expense.members} personas</h4>
+        <p className="text-gray-600 mb-2"><span className="custom-text-yellow-person">{expense.paid_by}</span> pago ${expense.amount_paid}</p>
+        <div className="flex justify-end">
+          <button
+            className="custom-text-white custom-background-first shadow font-medium rounded-lg text-sm px-4 py-1 text-center mr-2"
+             
+          >
+            Ver
+          </button>
+          <button
+            className="custom-text-white custom-background-first shadow font-medium rounded-lg text-sm px-4 py-1 text-center"
+            
+          >
+            Eliminar
+          </button>
+        </div>
+      </div></div>
+    
   ))}
+  </div>
 
       <div id="default-modal" tabIndex="-1" aria-hidden={!isModalOpen} className={`${isModalOpen ? 'block' : 'hidden'}  overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full flex`}>
         <div className="w-100 relative p-4 w-90 max-w-2xl max-h-full justify-center items-center flex">

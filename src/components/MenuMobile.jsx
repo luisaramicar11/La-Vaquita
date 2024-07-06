@@ -1,10 +1,15 @@
 import logo from "../assets/img/Logo.svg"
 import iconPerson from "../assets/img/icon-person.png"
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import "./MenuMobile.css"
 
 export function MenuMobile(){
-
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+            localStorage.setItem("token", "");
+            localStorage.setItem("id", "");
+            navigate("/auth/login");
+        };
     return(
         <div className="container-small">
             <div className="container-Logo">
@@ -12,9 +17,9 @@ export function MenuMobile(){
                   <img src={logo} alt="small logo" />
                   <h1>Mi Vaquita</h1>
                </div>
-               <div className="small-logo-person">
-                  <img src={iconPerson} alt="icon-person" />
-               </div>
+               <button onClick={handleLogOut} className="big-logo-person">
+          <img src={iconPerson} alt="icon-person" />
+        </button>
             </div>
             <div>
             <nav className="small-menu-links">

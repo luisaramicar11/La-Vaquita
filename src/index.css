@@ -37,6 +37,14 @@ html {
 
   .custom-text-yellow{
     color:var(--second-color);
+    font-weight: bold;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .custom-text-yellow-person{
+    color:var(--second-color);
+    font-weight: bold;
   }
 
   .custom-text-white{

@@ -46,7 +46,7 @@ export function Groups(){
             <h2 className="font-bold">Debes</h2>
             <p className="custom-text-red font-bold text-2xl">{totalUserValue}{/* {groups.reduce(function(total, current){return total + current.state.owe;},0)} */}</p>
         </div>
-        <div className="grid grid-cols-1 gap-3">
+        <div className="flex flex-wrap justify-center gap-5 md:flex-row lg:flex-row xl:flex-row ">
         {
           <GroupCard data={groups} />
         }
