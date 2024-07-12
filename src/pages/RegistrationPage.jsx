@@ -42,7 +42,7 @@ export function Registration(){
 
     // Validate password length and format
     if (fields.password.length < 8 || !validatePassword(fields.password)) {
-      setPasswordError("La contraseña debe tener al menos 8 caracteres, una letra y un carácter especial");
+      setPasswordError("La contraseña debe tener al menos 8 caracteres, un numero y un carácter especial");
       return;
     }
 

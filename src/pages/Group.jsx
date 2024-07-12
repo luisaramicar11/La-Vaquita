@@ -41,7 +41,9 @@ export function Group() {
           },
         });
         if (response.ok) {
+          
           const data = await response.json();
+          console.log(data)
           setGroupData(data); 
         }
       } catch (error) {
